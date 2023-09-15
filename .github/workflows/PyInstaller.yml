@@ -1,25 +1,38 @@
-name: Package Application with Pyinstaller
+name: Test Build Python Exe
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
-  build:
-
+  build_linux:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
-    - name: Package Application
-      uses: JackMcKew/pyinstaller-action-windows@main
+    - name: Test Build Python Exe
+      uses: eric2788/pyinstaller-build@master
       with:
-        path: src
-
-    - uses: actions/upload-artifact@v2
+        main: main
+        artifact: Program
+        use-dependencies: false
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
       with:
-        name: name-of-artifact
-        path: src/dist/windows
+        name: python_exe
+        path: dist
+        
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test Build Python Exe
+        uses: eric2788/pyinstaller-build@master
+        with:
+          main: main
+          artifact: Program
+          use-dependencies: false
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: python_exe
+          path: dist
