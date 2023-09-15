@@ -1,5 +1,3 @@
-import json
-import random
 import sys
 import urllib
 from threading import Thread
@@ -67,7 +65,7 @@ class MainWindow(QMainWindow):
 
         # Threading
         self.gmodWorker = GmodWorker()
-        self.gmod_thread = QThread()
+        self.gmod_thread = QThread(parent=self)
 
         self.gmodWorker.progress.connect(self.update_progress_gmod)
         self.gmodWorker.init.connect(self.gmodInit)
@@ -90,21 +88,11 @@ class MainWindow(QMainWindow):
         for index in self.rows:
             gmod = self.rows.get(index)
             if self.ui.lineEdit.text() == "":
-                item = QListWidgetItem()
-                gmodItem = GmodItem(gmod)
-                item.setSizeHint(gmodItem.minimumSizeHint())
-                gmodItem.updateImage(gmod.image)
-                self.ui.listWidget.insertItem(index, item)
-                self.ui.listWidget.setItemWidget(item, gmodItem)
+                self.addToGmodList(gmod, index)
                 pass
             else:
                 if gmod.name.lower().__contains__(self.ui.lineEdit.text().lower()):
-                    item = QListWidgetItem()
-                    gmodItem = GmodItem(gmod)
-                    item.setSizeHint(gmodItem.minimumSizeHint())
-                    gmodItem.updateImage(gmod.image)
-                    self.ui.listWidget.insertItem(index, item)
-                    self.ui.listWidget.setItemWidget(item, gmodItem)
+                    self.addToGmodList(gmod, index)
 
 
 
@@ -139,5 +127,5 @@ if __name__ == "__main__":
 
 
     # window.updateGmod()
-    appstatus = app.exec()
-    sys.exit(appstatus)
+    # appstatus = app.exec()
+    sys.exit(app.exec())
