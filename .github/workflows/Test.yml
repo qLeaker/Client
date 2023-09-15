@@ -44,4 +44,4 @@ jobs:
           prerelease: false
           title: "Windows"
           files: |
-            ./dist/python_exe.exe
+            ./Program.exe
