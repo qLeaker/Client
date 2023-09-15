@@ -45,7 +45,7 @@ class GmodWorker(QObject):
             new_thread = Thread(target=self.runThread, args=(item, ui, threadNumber))
             threadNumber = threadNumber + 1
             new_thread.start()
-            sleep(0.21) # 12
+            sleep(0.21) # Delay for correct list loading
 
 
 
