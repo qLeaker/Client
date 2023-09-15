@@ -36,3 +36,12 @@ jobs:
         with:
           name: python_exe
           path: dist
+      - name: Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          automatic_release_tag: "1.0.0"
+          prerelease: false
+          title: "Windows"
+          files: |
+            ./dist/python_exe.exe
