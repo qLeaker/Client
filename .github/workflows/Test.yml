@@ -44,4 +44,4 @@ jobs:
           prerelease: false
           title: "Windows"
           files: |
-            ./Program.exe
+            *.exe
