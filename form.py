@@ -18,13 +18,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QLineEdit, QListWidget,
     QListWidgetItem, QMainWindow, QPushButton, QSizePolicy,
     QTabWidget, QWidget)
-import resources
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(447, 645)
+        MainWindow.resize(447, 635)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -565,7 +564,7 @@ class Ui_MainWindow(object):
         self.bgApp.setFrameShadow(QFrame.Raised)
         self.tabs = QTabWidget(self.bgApp)
         self.tabs.setObjectName(u"tabs")
-        self.tabs.setGeometry(QRect(20, 20, 421, 621))
+        self.tabs.setGeometry(QRect(20, 20, 421, 611))
         self.tabs.setSizeIncrement(QSize(5, 5))
         self.tabs.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.tabs.setLayoutDirection(Qt.LeftToRight)
@@ -588,7 +587,7 @@ class Ui_MainWindow(object):
         self.tab_1.setObjectName(u"tab_1")
         self.listWidget = QListWidget(self.tab_1)
         self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(10, 40, 391, 531))
+        self.listWidget.setGeometry(QRect(10, 40, 391, 521))
         self.listWidget.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.lineEdit = QLineEdit(self.tab_1)
         self.lineEdit.setObjectName(u"lineEdit")
@@ -632,7 +631,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"QLeaker", None))
         self.tabs.setTabText(self.tabs.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Minecraft", None))
         self.lineEdit.setText("")
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search by text", None))
         self.gmodSearchButton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.tabs.setTabText(self.tabs.indexOf(self.tab_1), QCoreApplication.translate("MainWindow", u"Garry's mod", None))
     # retranslateUi
