@@ -1,3 +1,5 @@
+import json
+import random
 import sys
 import urllib
 from threading import Thread
@@ -31,12 +33,12 @@ class GmodWorker(QObject):
             gmod = Gmod(**jsonData)
             gmod.image = urllib.request.urlopen(gmod.image).read()
             self.progress.emit(gmod, number)
-        except:
-            print("Ошибка загрузки: " + item)
+        except Exception as e:
+            print("Ошибка загрузки аддона: " + item)
+            print(e)
 
     @Slot(Gmod)
     def run(self, ui: form.Ui_MainWindow):
-        global gmodList
         list = orjson.loads(requests.get("https://github.com/qLeaker/Cloud/raw/main/gmod/list.json").text)
         self.init.emit(list["lists"])
         print("[Garry's mod] список аддонов загружен")
@@ -45,7 +47,7 @@ class GmodWorker(QObject):
             new_thread = Thread(target=self.runThread, args=(item, ui, threadNumber))
             threadNumber = threadNumber + 1
             new_thread.start()
-            sleep(0.21) # Delay for correct list loading
+            sleep(0.21) # 12
 
 
 
@@ -65,7 +67,7 @@ class MainWindow(QMainWindow):
 
         # Threading
         self.gmodWorker = GmodWorker()
-        self.gmod_thread = QThread(parent=self)
+        self.gmod_thread = QThread()
 
         self.gmodWorker.progress.connect(self.update_progress_gmod)
         self.gmodWorker.init.connect(self.gmodInit)
@@ -88,18 +90,28 @@ class MainWindow(QMainWindow):
         for index in self.rows:
             gmod = self.rows.get(index)
             if self.ui.lineEdit.text() == "":
-                self.addToGmodList(gmod, index)
+                item = QListWidgetItem()
+                gmodItem = GmodItem(gmod)
+                item.setSizeHint(gmodItem.minimumSizeHint())
+                gmodItem.updateImage(gmod.image)
+                self.ui.listWidget.insertItem(index, item)
+                self.ui.listWidget.setItemWidget(item, gmodItem)
                 pass
             else:
                 if gmod.name.lower().__contains__(self.ui.lineEdit.text().lower()):
-                    self.addToGmodList(gmod, index)
+                    item = QListWidgetItem()
+                    gmodItem = GmodItem(gmod)
+                    item.setSizeHint(gmodItem.minimumSizeHint())
+                    gmodItem.updateImage(gmod.image)
+                    self.ui.listWidget.insertItem(index, item)
+                    self.ui.listWidget.setItemWidget(item, gmodItem)
 
 
 
 
     rows = dict()
     def gmodInit(self, list):
-        self.ui.tabWidget.setTabText(1, "Garry's mod [" + str(len(list)) + "]")
+        self.ui.tabs.setTabText(1, "Garry's mod [" + str(len(list)) + "]")
     def addToGmodList(self, gmod, row):
         item = QListWidgetItem()
         gmodItem = GmodItem(gmod)
@@ -124,8 +136,4 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
 
-
-
-    # window.updateGmod()
-    # appstatus = app.exec()
     sys.exit(app.exec())

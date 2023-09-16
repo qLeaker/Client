@@ -23,10 +23,10 @@ class GmodItem(QWidget):
         self.layout.setObjectName(gmod.name)
         self.image = QtGui.QImage()
         self.name = QLabel(gmod.name)
-        self.name.setMaximumWidth(400)
+        self.name.setMaximumWidth(350)
 
         self.version = QLabel("Version: " + gmod.version)
-        self.version.setMaximumWidth(400)
+        self.version.setMaximumWidth(350)
 
         self.imageLabel = QLabel()
 
@@ -36,23 +36,28 @@ class GmodItem(QWidget):
         self.layout.addWidget(self.imageLabel)
 
 
+        style = "QPushButton {border: 2px solid rgb(52, 59, 72);border-radius: 5px;	background-color: rgb(52, 59, 72);}QPushButton:hover {background-color: rgb(57, 65, 80);border: 2px solid rgb(61, 70, 86);}QPushButton:pressed {	background-color: rgb(35, 40, 49);border: 2px solid rgb(43, 50, 61);}"
+
         if gmod.file != "":
             self.downloadButton = QPushButton("Download")
             self.downloadButton.setMaximumWidth(80)
+            self.downloadButton.setStyleSheet(style)
             self.downloadButton.clicked.connect(lambda: self.save(self.downloadButton))
             self.layout_split.addWidget(self.downloadButton)
 
         if gmod.content != "":
             self.contentButton = QPushButton("Content")
             self.contentButton.setMaximumWidth(80)
+            self.contentButton.setStyleSheet(style)
             self.contentButton.clicked.connect(lambda: self.open_url(gmod.content))
             self.layout_split.addWidget(self.contentButton)
 
         if gmod.store != "":
-            self.contentButton = QPushButton("GmodStore")
-            self.contentButton.setMaximumWidth(80)
-            self.contentButton.clicked.connect(lambda: self.open_url(gmod.store))
-            self.layout_split.addWidget(self.contentButton)
+            self.gmodStoreButton = QPushButton("GmodStore")
+            self.gmodStoreButton.setMaximumWidth(80)
+            self.gmodStoreButton.setStyleSheet(style)
+            self.gmodStoreButton.clicked.connect(lambda: self.open_url(gmod.store))
+            self.layout_split.addWidget(self.gmodStoreButton)
 
 
         self.layout.setLayout(3, PySide6.QtWidgets.QFormLayout.ItemRole.FieldRole.FieldRole, self.layout_split)
@@ -76,7 +81,7 @@ class GmodItem(QWidget):
     def updateImage(self, data: bytes):
         self.image.loadFromData(data, "PNG")
         self.pixmap = QtGui.QPixmap(self.image)
-        self.pixmap = self.pixmap.scaled(350, 85, QtCore.Qt.KeepAspectRatio)
+        self.pixmap = self.pixmap.scaledToWidth(350)
         self.imageLabel.setPixmap(self.pixmap)
 
 
