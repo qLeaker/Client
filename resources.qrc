@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/box.png</file>
+    <file>icons/shop.png</file>
+    <file>icons/magnifying-glass.png</file>
+    <file>icons/download.png</file>
     <file>icons/storage.png</file>
     <file>icons/garry's mod.png</file>
     <file>icons/minecraft.png</file>

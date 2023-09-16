@@ -59,7 +59,6 @@ class MainWindow(QMainWindow):
         self.ll = gmodLayout()
         self.ui = form.Ui_MainWindow()
         self.ui.setupUi(self)
-        self.children = []
         self.gmodList = []
 
         self.ui.listWidget.setSelectionMode(PySide6.QtWidgets.QAbstractItemView.SelectionMode.NoSelection)
@@ -84,9 +83,8 @@ class MainWindow(QMainWindow):
 
 
     def search(self):
+        self.ui.gmodSearchButton.setEnabled(False)
         self.ui.listWidget.clear()
-        self.children = []
-        self.ll = gmodLayout()
         for index in self.rows:
             gmod = self.rows.get(index)
             if self.ui.lineEdit.text() == "":
@@ -105,6 +103,7 @@ class MainWindow(QMainWindow):
                     gmodItem.updateImage(gmod.image)
                     self.ui.listWidget.insertItem(index, item)
                     self.ui.listWidget.setItemWidget(item, gmodItem)
+        self.ui.gmodSearchButton.setEnabled(True)
 
 
 

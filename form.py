@@ -595,12 +595,12 @@ class Ui_MainWindow(object):
         self.listWidget.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.lineEdit = QLineEdit(self.tab_1)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(10, 10, 321, 22))
+        self.lineEdit.setGeometry(QRect(10, 10, 301, 22))
         self.lineEdit.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.lineEdit.setClearButtonEnabled(True)
         self.gmodSearchButton = QPushButton(self.tab_1)
         self.gmodSearchButton.setObjectName(u"gmodSearchButton")
-        self.gmodSearchButton.setGeometry(QRect(340, 10, 61, 23))
+        self.gmodSearchButton.setGeometry(QRect(320, 10, 81, 23))
         self.gmodSearchButton.setMouseTracking(True)
         self.gmodSearchButton.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
@@ -616,8 +616,11 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(43, 50, 61);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u":/icons/icons/garry's mod.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.tabs.addTab(self.tab_1, icon2, "")
+        icon2.addFile(u":/icons/icons/magnifying-glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.gmodSearchButton.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icons/garry's mod.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabs.addTab(self.tab_1, icon3, "")
         self.listWidget.raise_()
         self.gmodSearchButton.raise_()
         self.lineEdit.raise_()

@@ -3,7 +3,8 @@ import random
 import PySide6
 import requests
 from PySide6 import QtGui, QtCore
-from PySide6.QtCore import QRect
+from PySide6.QtCore import QRect, QSize
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (QLabel, QWidget, QPushButton, QVBoxLayout, QFormLayout, QHBoxLayout)
 import urllib.request
 import webbrowser
@@ -40,22 +41,35 @@ class GmodItem(QWidget):
 
         if gmod.file != "":
             self.downloadButton = QPushButton("Download")
-            self.downloadButton.setMaximumWidth(80)
+            self.downloadButton.setMaximumWidth(100)
             self.downloadButton.setStyleSheet(style)
             self.downloadButton.clicked.connect(lambda: self.save(self.downloadButton))
+
+            self.icon1 = QIcon()
+            self.icon1.addFile(u":/icons/icons/download.png", QSize(), QIcon.Normal, QIcon.Off)
+            self.downloadButton.setIcon(self.icon1)
+
             self.layout_split.addWidget(self.downloadButton)
 
         if gmod.content != "":
             self.contentButton = QPushButton("Content")
-            self.contentButton.setMaximumWidth(80)
+            self.contentButton.setMaximumWidth(100)
             self.contentButton.setStyleSheet(style)
+
+            self.icon2 = QIcon()
+            self.icon2.addFile(u":/icons/icons/box.png", QSize(), QIcon.Normal, QIcon.Off)
+            self.contentButton.setIcon(self.icon2)
+
             self.contentButton.clicked.connect(lambda: self.open_url(gmod.content))
             self.layout_split.addWidget(self.contentButton)
 
         if gmod.store != "":
             self.gmodStoreButton = QPushButton("GmodStore")
-            self.gmodStoreButton.setMaximumWidth(80)
+            self.gmodStoreButton.setMaximumWidth(100)
             self.gmodStoreButton.setStyleSheet(style)
+            self.icon3 = QIcon()
+            self.icon3.addFile(u":/icons/icons/shop.png", QSize(), QIcon.Normal, QIcon.Off)
+            self.gmodStoreButton.setIcon(self.icon3)
             self.gmodStoreButton.clicked.connect(lambda: self.open_url(gmod.store))
             self.layout_split.addWidget(self.gmodStoreButton)
 

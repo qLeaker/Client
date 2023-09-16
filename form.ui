@@ -661,7 +661,7 @@ Button */
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>321</width>
+         <width>301</width>
          <height>22</height>
         </rect>
        </property>
@@ -681,9 +681,9 @@ Button */
       <widget class="QPushButton" name="gmodSearchButton">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>320</x>
          <y>10</y>
-         <width>61</width>
+         <width>81</width>
          <height>23</height>
         </rect>
        </property>
@@ -707,6 +707,10 @@ QPushButton:pressed {
        </property>
        <property name="text">
         <string>Search</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/icons/icons/magnifying-glass.png</normaloff>:/icons/icons/magnifying-glass.png</iconset>
        </property>
       </widget>
       <zorder>listWidget</zorder>
