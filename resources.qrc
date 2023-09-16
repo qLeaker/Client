@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/storage.png</file>
     <file>icons/garry's mod.png</file>
     <file>icons/minecraft.png</file>
   </qresource>

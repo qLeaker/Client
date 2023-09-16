@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>447</width>
-    <height>645</height>
+    <height>635</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,6 +25,10 @@
   </property>
   <property name="windowTitle">
    <string>QLeaker</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/icons/storage.png</normaloff>:/icons/icons/storage.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -571,7 +575,7 @@ Button */
        <x>20</x>
        <y>20</y>
        <width>421</width>
-       <height>621</height>
+       <height>611</height>
       </rect>
      </property>
      <property name="sizeIncrement">
@@ -645,7 +649,7 @@ Button */
          <x>10</x>
          <y>40</y>
          <width>391</width>
-         <height>531</height>
+         <height>521</height>
         </rect>
        </property>
        <property name="styleSheet">
